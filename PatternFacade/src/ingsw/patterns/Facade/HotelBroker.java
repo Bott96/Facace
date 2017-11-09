@@ -11,6 +11,8 @@ public class HotelBroker {
 	    hotels.add(new Hotel("Hotel Marconi", "Lamezia", 50));
 	    hotels.add(new Hotel("Holiday Inn", "Lamezia", 70));
 	    hotels.add(new Hotel("Hotel Londra", "Londra", 80));
+	    hotels.add(new Hotel("Hotel Central", "Londra", 80));
+	    hotels.add(new Hotel("Hotel Holloway Road", "Londra", 80));
 	    hotels.add(new Hotel("Hotel Parigi", "Parigi", 65));
 	    hotels.add(new Hotel("Hotel Firenze", "Firenze", 30));
 	    hotels.add(new Hotel("Hotel Bologna", "Bologna", 150));
@@ -29,6 +31,19 @@ public class HotelBroker {
 	
 	public Vector<Hotel> getListHotel(){
 		return hotels;
+	}
+	
+	public void getHotelByLocation(String s, Vector<Hotel> h1){
+
+		
+		for (Hotel h : hotels) {
+			if(h.getLocation().equals(s))
+				h1.add(h);
+			
+		}
+		
+		//return f;
+		
 	}
 	
 	public Hotel getHotel(int n)

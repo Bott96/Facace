@@ -1,9 +1,6 @@
 package ingsw.patterns.Facade;
 
-import java.util.ArrayList;
 import java.util.Vector;
-
-import javax.swing.ListModel;
 
 class HotelVolo {
 
@@ -54,21 +51,18 @@ public class FacadeJurney {
 		return gestoreVolo.getVectorVoli();
 	}
 
-	public HotelVolo getHotelAndVoloByLocation(String Partenza, String Arrivo, String nome) {
-		Hotel h;
-		Volo v;
+	public void getHotelAndVoloByLocation(String Partenza, String Arrivo, Volo v1, Vector<Hotel> h1) {
 
 		try {
-			h = gestoreHotel.getHotel(nome);
-			v = gestoreVolo.getVolo(Partenza, Arrivo);
-
-			HotelVolo hv = new HotelVolo(h, v);
-			return hv;
+			
+			v1.setVolo(gestoreVolo.getVolo(Partenza, Arrivo));
 		} catch (RuntimeException e) {
 			System.out.println(e.getMessage());
 		}
 
-		return null;
+		gestoreHotel.getHotelByLocation(Arrivo, h1);
+		// System.out.println(h1.size());
+
 	}
 
 }
