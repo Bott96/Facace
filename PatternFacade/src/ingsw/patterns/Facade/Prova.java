@@ -82,8 +82,8 @@ public class Prova extends JFrame {
 
 		p.add(txtCittaPartenza);
 		p.add(txtCittaArrivo);
-		p.add(txtNomeH);
-		//p.add(lstHotel);
+		//p.add(txtNomeH);
+		p.add(lstHotel);
 		p.add(lstVoli);
 		this.setBackground(c);
 		this.setContentPane(p);
