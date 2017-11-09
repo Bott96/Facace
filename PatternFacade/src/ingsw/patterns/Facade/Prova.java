@@ -53,7 +53,7 @@ public class Prova extends JFrame {
 		txtCittaPartenza.setBounds(d.height / 2, 50, 200, 20);
 		txtRisVolo.setBounds(d.height / 2, 110, 200, 20);
 		txtRisVolo.setEnabled(false);
-		//txtNomeH.setBounds(d.height / 2, 140, 200, 20);
+		// txtNomeH.setBounds(d.height / 2, 140, 200, 20);
 
 		FacadeJurney facade = new FacadeJurney();
 		Vector<Hotel> v1 = facade.getAviableHotel();
@@ -66,11 +66,23 @@ public class Prova extends JFrame {
 		lstHotel = new JList<Hotel>(v1);
 		lstHotel.setBounds(50, 50, 150, 350);
 		lstHotel.updateUI();
-		
+
+		lstVoli.addListSelectionListener(new ListSelectionListener() {
+
+			@Override
+			public void valueChanged(ListSelectionEvent e) {
+				if (!e.getValueIsAdjusting()) {
+					String s= lstVoli.getSelectedValue().toString();
+					txtCittaPartenza.setText(s.substring(0, s.indexOf('-')));
+					txtCittaArrivo.setText(s.substring(s.indexOf('>')+1));
+				}
+			}
+		});
 
 		ris = new Vector<>();
 		lstRis = new JList<Hotel>(ris);
-		lstRis.setBounds(d.height / 2, 140, 200, 100);;
+		lstRis.setBounds(d.height / 2, 140, 200, 100);
+		;
 		lstRis.updateUI();
 
 		plsCercaViaggio.addActionListener(new ActionListener() {
@@ -80,10 +92,10 @@ public class Prova extends JFrame {
 				txtRisVolo.setText("");
 				ris.clear();
 				Volo vo = new Volo();
-				
+
 				facade.getHotelAndVoloByLocation(txtCittaPartenza.getText(), txtCittaArrivo.getText(), vo, ris);
 				txtRisVolo.setText(vo.toString());
-				
+
 				lstRis.updateUI();
 			}
 		});
@@ -97,9 +109,9 @@ public class Prova extends JFrame {
 
 		p.add(txtCittaPartenza);
 		p.add(txtCittaArrivo);
-		 p.add(lstRis);
-			p.add(lstHotel);
-			p.add(txtRisVolo);
+		p.add(lstRis);
+		p.add(lstHotel);
+		p.add(txtRisVolo);
 		p.add(lstVoli);
 		this.setBackground(c);
 		this.setContentPane(p);
